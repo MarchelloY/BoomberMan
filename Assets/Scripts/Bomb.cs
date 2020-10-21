@@ -18,9 +18,9 @@ public class Bomb : MonoBehaviour
         FireSpawn(Vector3.left);
         FireSpawn(Vector3.up);
         FireSpawn(Vector3.right);
+        var colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, 1f, explosiveMask);
         yield return new WaitForSeconds(0.5f);
         DestroyAllFire();
-        var colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, 1f, explosiveMask);
         foreach (var collider in colliders)
         {
             if (collider.CompareTag("Player")) SceneManager.LoadScene(sceneBuildIndex: 0);
