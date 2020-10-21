@@ -18,7 +18,7 @@ public class Bomb : MonoBehaviour
         FireSpawn(Vector3.left);
         FireSpawn(Vector3.up);
         FireSpawn(Vector3.right);
-        var colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, 1f, explosiveMask);
+        var colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, 0.5f, explosiveMask);
         yield return new WaitForSeconds(0.5f);
         DestroyAllFire();
         foreach (var collider in colliders)
@@ -36,7 +36,7 @@ public class Bomb : MonoBehaviour
 
     private void DestroyAllFire()
     {
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("fire");
+        var gameObjects = GameObject.FindGameObjectsWithTag("fire");
         foreach (var gameObject in gameObjects)
         {
             Destroy(gameObject);
